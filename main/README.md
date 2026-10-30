@@ -1,4 +1,4 @@
-# Rutuj Dhawale | Personal Website & Portfolio
+# Website 
 
 [![CI](https://github.com/rutujdhawale/website/actions/workflows/ci.yml/badge.svg)](https://github.com/rutujdhawale/website/actions/workflows/ci.yml)
 [![Next.js](https://img.shields.io/badge/Next.js-15-black?logo=next.dot.js)](https://nextjs.org/)
@@ -7,7 +7,7 @@
 
 Hey, I'm Rutuj Dhawale, an engineering student at VJTI Mumbai and a software engineer focused on AI systems, cloud-native workflows, and full-stack development.
 
-This repo powers my personal portfolio at [rutuj.tech](https://rutuj.tech).
+This repo powers my website at [rutuj.tech](https://rutuj.tech).
 
 ## What's Inside
 
