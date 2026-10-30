@@ -83,28 +83,28 @@ export function SpotifyLastPlayed() {
         </div>
 
         <div className="min-w-0 flex-1">
-          <p className="flex items-center gap-1.5 text-[10px] font-medium text-secondary">
-            <span className="size-1.5 rounded-full bg-emerald-500" />
-            Last listened
+          <p className="flex items-center gap-1.5 text-xs font-medium text-secondary">
+            <span className="size-1.5 rounded-full bg-secondary/60" />
+            Favorite
           </p>
 
           <Link
             href={lastPlayedTrack.songUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-0.5 block truncate text-sm font-semibold text-foreground hover:underline"
+            className="mt-0.5 block truncate text-base font-bold text-foreground hover:underline"
           >
             {lastPlayedTrack.title}
           </Link>
-          <p className="truncate text-xs text-secondary">{lastPlayedTrack.artist}</p>
+          <p className="truncate text-sm text-secondary">{lastPlayedTrack.artist}</p>
 
           <Link
             href={lastPlayedTrack.songUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-1.5 block truncate text-[10px] text-secondary underline-offset-2 hover:text-foreground hover:underline"
+            className="mt-2 block truncate text-[11px] text-secondary/80 underline-offset-2 hover:text-foreground hover:underline"
           >
-            {lastPlayedTrack.album} · Spotify
+            Last listened: {lastPlayedTrack.title} · {lastPlayedTrack.artist}
           </Link>
         </div>
 
