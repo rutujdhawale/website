@@ -18,7 +18,7 @@ export const experience: ExperienceItem[] = [
     periodLong: "2025 - Present",
     link: "https://github.com/kagent-dev/kagent",
     details: [
-      "Fixed AgentCard UI occlusion with an adaptive ribbon badge (#952). Refactored tool resolution to full-reference equality across ToolsSection and SelectToolsDialog, preventing duplicate registrations.",
+      "Fixed AgentCard UI occlusion with an adaptive ribbon badge. Refactored tool resolution to full-reference equality across ToolsSection and SelectToolsDialog, preventing duplicate registrations.",
     ],
   },
   {
@@ -37,7 +37,7 @@ export const experience: ExperienceItem[] = [
     periodLong: "2026 - Present",
     link: "https://github.com/krkn-chaos/krkn",
     details: [
-      "Hardened serverless chat function error handling to return 400 Bad Request on invalid JSON payloads instead of 500 server crashes. Added test execution steps to contributing guides and cleaned redundant banners across chaos docs (#554).",
+      "Hardened serverless chat function error handling to return 400 Bad Request on invalid JSON payloads instead of 500 server crashes. Added test execution steps to contributing guides and cleaned redundant banners across chaos docs.",
     ],
   },
   {
