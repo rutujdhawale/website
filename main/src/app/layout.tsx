@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { SiteAnalytics } from "@/components/analytics";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { CommandMenu } from "@/components/command-menu";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
@@ -43,7 +44,8 @@ export default function RootLayout({
               <CursorPet />
               <CommandMenu />
             </div>
-            <SiteAnalytics />
+            <Analytics />
+            <SpeedInsights />
           </TooltipProvider>
         </ThemeProvider>
       </body>
