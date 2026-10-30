@@ -1,18 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, GithubLogo, Globe } from "@phosphor-icons/react/dist/ssr";
+import { ArrowLeft, CheckCircle, GithubLogo, Globe } from "@phosphor-icons/react/dist/ssr";
 import { Container } from "@/components/container";
 import { LiquidGlassCard } from "@/components/ui/liquid-glass";
 import { projects } from "@/config/projects";
-import { getProjectPost, getProjectPosts } from "@/lib/mdx";
-import { MdxContent } from "@/components/mdx-content";
 import { createPageMetadata, pageTitle } from "@/lib/metadata";
 
 export async function generateStaticParams() {
-  const posts = await getProjectPosts();
-  const slugs = new Set([...projects.map((project) => project.slug), ...posts.map((post) => post.slug)]);
-  return Array.from(slugs).map((slug) => ({ slug }));
+  return projects.map((project) => ({ slug: project.slug }));
 }
 
 export async function generateMetadata({
@@ -21,16 +17,12 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const post = await getProjectPost(slug);
   const project = projects.find((item) => item.slug === slug);
-  if (!post && !project) return {};
-
-  const title = post?.title || project?.title || "Project";
-  const description = post?.description || project?.description || "";
+  if (!project) return {};
 
   return createPageMetadata({
-    title: pageTitle(title),
-    description,
+    title: pageTitle(project.title),
+    description: project.description,
     path: `/projects/${slug}`,
     type: "article",
   });
@@ -42,21 +34,24 @@ export default async function ProjectDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const post = await getProjectPost(slug);
   const project = projects.find((item) => item.slug === slug);
-  if (!post && !project) notFound();
+  if (!project) notFound();
 
-  const title = post?.title || project?.title || "";
-  const description = post?.description || project?.description || "";
-  const date = post?.date || project?.date || "";
-  const cover = post?.cover || project?.cover;
-  const tech = post?.tech || project?.tech || [];
-  const tags = post?.tags || project?.tags || [];
-  const repoHref = project?.href;
-  const websiteHref = project?.website;
+  const {
+    title,
+    tagline,
+    overview,
+    date,
+    cover,
+    tech,
+    tags,
+    features,
+    href: repoHref,
+    website: websiteHref,
+  } = project;
 
   return (
-    <div className="space-y-8 pb-16 pt-8">
+    <div className="space-y-10 pb-16 pt-8">
       <Container>
         <Link
           href="/projects"
@@ -66,11 +61,9 @@ export default async function ProjectDetailPage({
           Back to projects
         </Link>
 
-        <p className="mt-4 font-mono text-xs text-muted-foreground">{date}</p>
+        <p className="mt-5 font-mono text-xs text-muted-foreground">{date}</p>
         <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">{title}</h1>
-        <p className="mt-3 max-w-2xl text-base leading-relaxed text-secondary sm:text-lg">
-          {description}
-        </p>
+        <p className="mt-2 text-base text-foreground/80 sm:text-lg">{tagline}</p>
 
         <div className="mt-5 flex flex-wrap gap-2.5">
           {websiteHref && (
@@ -129,26 +122,60 @@ export default async function ProjectDetailPage({
           </LiquidGlassCard>
         )}
 
-        <article className="prose prose-neutral dark:prose-invert mt-8 max-w-none">
-          {post?.content ? (
-            <MdxContent source={post.content} />
-          ) : (
-            <>
-              <h2>Overview</h2>
-              <p>{description}</p>
-              {tech.length > 0 && (
-                <>
-                  <h2>Technologies</h2>
-                  <ul>
-                    {tech.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                </>
-              )}
-            </>
+        <div className="mt-10 space-y-10 border-t border-dashed border-border/50 pt-8">
+          <div>
+            <h2 className="text-xl font-bold tracking-tight text-foreground sm:text-2xl">
+              Overview
+            </h2>
+            <p className="mt-3 text-base leading-relaxed text-secondary">
+              {overview}
+            </p>
+          </div>
+
+          {tech && tech.length > 0 && (
+            <div>
+              <h2 className="text-lg font-bold tracking-tight text-foreground">
+                Technologies Used
+              </h2>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {tech.map((t) => (
+                  <span
+                    key={t}
+                    className="rounded-lg border border-border bg-card px-3 py-1 font-mono text-xs font-medium text-foreground"
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
           )}
-        </article>
+
+          {features && features.length > 0 && (
+            <div className="space-y-6">
+              <h2 className="text-xl font-bold tracking-tight text-foreground sm:text-2xl">
+                Key Highlights & Features
+              </h2>
+              <div className="grid gap-4 sm:grid-cols-2">
+                {features.map((feature) => (
+                  <div
+                    key={feature.category}
+                    className="rounded-xl border border-border bg-card/50 p-5 shadow-xs"
+                  >
+                    <h3 className="font-semibold text-foreground">{feature.category}</h3>
+                    <ul className="mt-3 space-y-2">
+                      {feature.points.map((pt) => (
+                        <li key={pt} className="flex items-start gap-2 text-sm text-secondary">
+                          <CheckCircle className="mt-0.5 size-4 shrink-0 text-emerald-500" />
+                          <span>{pt}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
       </Container>
     </div>
   );
