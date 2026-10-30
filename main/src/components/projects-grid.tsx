@@ -10,11 +10,10 @@ export function ProjectCard({ project, index = 0 }: { project: Project; index?: 
   return (
     <LiquidGlassCard
       glowIntensity="sm"
-      shadowIntensity="md"
+      shadowIntensity="sm"
       borderRadius="18px"
-      blurIntensity="md"
-      className="animate-in-up-on-view group flex min-w-0 flex-col"
-      style={{ animationDelay: `${index * 0.05}s` }}
+      blurIntensity="sm"
+      className="group flex min-w-0 flex-col"
     >
       <div
         className={cn(
@@ -28,6 +27,7 @@ export function ProjectCard({ project, index = 0 }: { project: Project; index?: 
             alt={`${project.title} cover`}
             fill
             sizes="(max-width: 640px) 100vw, 400px"
+            priority={index < 4}
             className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.035]"
           />
         ) : (
@@ -128,6 +128,7 @@ export function ProjectsGrid({
         <div className="mt-10 flex justify-center">
           <Link
             href="/projects"
+            prefetch={true}
             className="rounded-lg border border-border bg-card px-5 py-2 text-sm font-medium shadow-sm transition-colors hover:bg-muted"
           >
             Show all projects

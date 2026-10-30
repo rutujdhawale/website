@@ -28,15 +28,12 @@ export const experience: ExperienceItem[] = [
     periodLong: "2022 - 2026",
     locationShort: "Mumbai, IN",
     locationLong: "Mumbai, India",
-    details: [
-      "Electronics & Telecommunication Engineering.",
-    ],
   },
   {
     company: "krkn",
     role: "Contributor (CNCF)",
-    periodShort: "2024 - Present",
-    periodLong: "2024 - Present",
+    periodShort: "2026 - Present",
+    periodLong: "2026 - Present",
     link: "https://github.com/krkn-chaos/krkn",
     details: [
       "Hardened serverless chat function error handling to return 400 Bad Request on invalid JSON payloads instead of 500 server crashes. Added test execution steps to contributing guides and cleaned redundant banners across chaos docs (#554).",
@@ -45,8 +42,8 @@ export const experience: ExperienceItem[] = [
   {
     company: "Unified Mentor Private Limited",
     role: "Software Engineer Intern",
-    periodShort: "Jun 2025 - Aug 2025",
-    periodLong: "Jun 2025 - Aug 2025",
+    periodShort: "2025 - Aug 2025",
+    periodLong: "2025 - Aug 2025",
     locationShort: "Remote, IN",
     locationLong: "Remote, India",
     details: [
