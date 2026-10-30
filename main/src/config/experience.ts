@@ -28,6 +28,7 @@ export const experience: ExperienceItem[] = [
     periodLong: "2022 - 2026",
     locationShort: "Mumbai, IN",
     locationLong: "Mumbai, India",
+    link: "https://vjti.ac.in/",
   },
   {
     company: "krkn",
@@ -46,6 +47,7 @@ export const experience: ExperienceItem[] = [
     periodLong: "2025 - Aug 2025",
     locationShort: "Remote, IN",
     locationLong: "Remote, India",
+    link: "https://unifiedmentor.com/",
     details: [
       "Engineered secure REST APIs with JWT auth, RBAC, and MongoDB for user workflows. Developed responsive frontend components for the Sahayog crowdfunding platform using React and Tailwind CSS.",
     ],
