@@ -15,9 +15,9 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   icons: {
-    icon: "/assets/avatar-smile-transparent.png",
-    shortcut: "/assets/avatar-smile-transparent.png",
-    apple: "/assets/avatar-smile-transparent.png",
+    icon: "/icon.png",
+    shortcut: "/favicon.ico",
+    apple: "/apple-icon.png",
   },
 };
 
