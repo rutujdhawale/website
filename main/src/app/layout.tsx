@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Analytics } from "@vercel/analytics/react";
+import { SiteAnalytics } from "@/components/analytics";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { CursorPet } from "@/components/cursor-pet";
@@ -40,7 +40,7 @@ export default function RootLayout({
               <div className="pointer-events-none fixed inset-x-0 bottom-0 z-10 h-[60px] bg-gradient-to-t from-background/80 to-transparent [mask-image:linear-gradient(to_top,black_50%,transparent)]" />
               <CursorPet />
             </div>
-            <Analytics />
+            <SiteAnalytics />
           </TooltipProvider>
         </ThemeProvider>
       </body>
