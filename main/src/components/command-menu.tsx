@@ -4,28 +4,25 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Command } from "cmdk";
-import {
-  Briefcase,
-  ExternalLink,
-  FileText,
-  Folder,
-  Home,
-  Mail,
-  Search,
-  User,
-  X,
-} from "lucide-react";
-import { GithubLogo, LinkedinLogo, XLogo } from "@phosphor-icons/react";
-import { projects } from "@/config/projects";
+import { Home, Search, X } from "lucide-react";
 
-const resumeUrl =
-  "https://drive.google.com/file/d/15IFprveGBnG0ORohpRr8SAJG1Qvv2rDB/view?usp=sharing";
+const navItems = [
+  { label: "Home", href: "/", isExternal: false },
+  { label: "About", href: "/#about", isExternal: false },
+  { label: "Projects", href: "/projects", isExternal: false },
+  { label: "Work", href: "/#experience", isExternal: false },
+  {
+    label: "Resume",
+    href: "https://drive.google.com/file/d/15IFprveGBnG0ORohpRr8SAJG1Qvv2rDB/view?usp=sharing",
+    isExternal: true,
+  },
+];
 
 export function CommandMenu() {
   const [open, setOpen] = useState(false);
   const router = useRouter();
 
-  // Listen for Cmd+K / Ctrl+K keyboard shortcut
+  // Listen for keyboard shortcut (if on mobile keyboard or device)
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
       if ((e.key === "k" && (e.metaKey || e.ctrlKey)) || (e.key === "/" && !["INPUT", "TEXTAREA"].includes((e.target as HTMLElement)?.tagName))) {
@@ -49,7 +46,7 @@ export function CommandMenu() {
 
   return (
     <>
-      {/* Floating Bottom Navigation & Search Dock (Mobile only) */}
+      {/* Floating Bottom Navigation & Search Dock (Mobile Only) */}
       <div className="pointer-events-none fixed bottom-5 inset-x-0 z-40 flex justify-center px-4 md:hidden">
         <div className="pointer-events-auto flex items-center gap-1.5 rounded-full border border-border/80 bg-background/90 p-1.5 shadow-xl backdrop-blur-xl ring-1 ring-black/5 dark:ring-white/10">
           <Link
@@ -79,12 +76,12 @@ export function CommandMenu() {
           onClick={() => setOpen(false)}
         >
           <div
-            className="w-full max-w-lg overflow-hidden rounded-2xl border border-border/80 bg-card shadow-2xl dark:bg-neutral-900"
+            className="w-full max-w-sm overflow-hidden rounded-2xl border border-border/80 bg-card shadow-2xl dark:bg-neutral-900"
             onClick={(e) => e.stopPropagation()}
           >
             <Command
               label="Command Menu"
-              className="flex w-full flex-col overflow-hidden"
+              className="flex w-full flex-col font-sans"
             >
               {/* Search Bar Header */}
               <div className="flex items-center gap-3 border-b border-border/60 px-4">
@@ -92,7 +89,7 @@ export function CommandMenu() {
                 <Command.Input
                   autoFocus
                   placeholder="Search pages and links..."
-                  className="w-full bg-transparent py-4 text-sm outline-none placeholder:text-secondary sm:text-base"
+                  className="w-full bg-transparent py-3.5 text-sm font-sans outline-none placeholder:text-secondary"
                 />
                 <button
                   type="button"
@@ -105,146 +102,25 @@ export function CommandMenu() {
               </div>
 
               {/* Items List */}
-              <Command.List className="max-h-[60vh] overflow-y-auto p-2 sm:p-3">
-                <Command.Empty className="py-8 text-center text-sm text-secondary">
+              <Command.List className="p-3">
+                <Command.Empty className="py-6 text-center text-sm font-sans text-secondary">
                   No results found.
                 </Command.Empty>
 
-                {/* Navigation Group */}
                 <Command.Group
                   heading="Navigate"
-                  className="px-2 py-1.5 text-[11px] font-mono font-medium uppercase tracking-wider text-secondary"
+                  className="space-y-1 font-sans text-xs font-medium text-foreground/70"
                 >
-                  <Command.Item
-                    value="Home"
-                    onSelect={() => handleSelect("/")}
-                    className="flex cursor-pointer items-center justify-between rounded-xl px-3 py-2.5 text-sm font-medium text-foreground transition-colors data-[selected=true]:bg-muted hover:bg-muted"
-                  >
-                    <div className="flex items-center gap-3">
-                      <Home className="size-4 text-secondary" />
-                      <span>Home</span>
-                    </div>
-                  </Command.Item>
-
-                  <Command.Item
-                    value="About"
-                    onSelect={() => handleSelect("/#about")}
-                    className="flex cursor-pointer items-center justify-between rounded-xl px-3 py-2.5 text-sm font-medium text-foreground transition-colors data-[selected=true]:bg-muted hover:bg-muted"
-                  >
-                    <div className="flex items-center gap-3">
-                      <User className="size-4 text-secondary" />
-                      <span>About</span>
-                    </div>
-                  </Command.Item>
-
-                  <Command.Item
-                    value="Projects"
-                    onSelect={() => handleSelect("/projects")}
-                    className="flex cursor-pointer items-center justify-between rounded-xl px-3 py-2.5 text-sm font-medium text-foreground transition-colors data-[selected=true]:bg-muted hover:bg-muted"
-                  >
-                    <div className="flex items-center gap-3">
-                      <Folder className="size-4 text-secondary" />
-                      <span>Projects</span>
-                    </div>
-                  </Command.Item>
-
-                  <Command.Item
-                    value="Work Experience"
-                    onSelect={() => handleSelect("/#experience")}
-                    className="flex cursor-pointer items-center justify-between rounded-xl px-3 py-2.5 text-sm font-medium text-foreground transition-colors data-[selected=true]:bg-muted hover:bg-muted"
-                  >
-                    <div className="flex items-center gap-3">
-                      <Briefcase className="size-4 text-secondary" />
-                      <span>Work</span>
-                    </div>
-                  </Command.Item>
-
-                  <Command.Item
-                    value="Resume"
-                    onSelect={() => handleSelect(resumeUrl, true)}
-                    className="flex cursor-pointer items-center justify-between rounded-xl px-3 py-2.5 text-sm font-medium text-foreground transition-colors data-[selected=true]:bg-muted hover:bg-muted"
-                  >
-                    <div className="flex items-center gap-3">
-                      <FileText className="size-4 text-secondary" />
-                      <span>Resume</span>
-                    </div>
-                    <ExternalLink className="size-3.5 text-secondary" />
-                  </Command.Item>
-                </Command.Group>
-
-                {/* Projects Group */}
-                <Command.Group
-                  heading="Projects"
-                  className="mt-2 px-2 py-1.5 text-[11px] font-mono font-medium uppercase tracking-wider text-secondary"
-                >
-                  {projects.map((project) => (
+                  {navItems.map((item) => (
                     <Command.Item
-                      key={project.slug}
-                      value={`${project.title} ${project.tags?.join(" ")}`}
-                      onSelect={() => handleSelect(project.website || project.href, true)}
-                      className="flex cursor-pointer items-center justify-between rounded-xl px-3 py-2.5 text-sm font-medium text-foreground transition-colors data-[selected=true]:bg-muted hover:bg-muted"
+                      key={item.label}
+                      value={item.label}
+                      onSelect={() => handleSelect(item.href, item.isExternal)}
+                      className="cursor-pointer rounded-lg px-3 py-2.5 font-sans text-sm font-normal text-foreground transition-colors data-[selected=true]:bg-muted/80 hover:bg-muted/70"
                     >
-                      <div className="flex items-center gap-3">
-                        <Folder className="size-4 text-secondary" />
-                        <span>{project.title}</span>
-                      </div>
-                      <ExternalLink className="size-3.5 text-secondary" />
+                      {item.label}
                     </Command.Item>
                   ))}
-                </Command.Group>
-
-                {/* Connect & Social Group */}
-                <Command.Group
-                  heading="Connect"
-                  className="mt-2 px-2 py-1.5 text-[11px] font-mono font-medium uppercase tracking-wider text-secondary"
-                >
-                  <Command.Item
-                    value="GitHub"
-                    onSelect={() => handleSelect("https://github.com/rutujdhawale", true)}
-                    className="flex cursor-pointer items-center justify-between rounded-xl px-3 py-2.5 text-sm font-medium text-foreground transition-colors data-[selected=true]:bg-muted hover:bg-muted"
-                  >
-                    <div className="flex items-center gap-3">
-                      <GithubLogo className="size-4 text-secondary" />
-                      <span>GitHub</span>
-                    </div>
-                    <ExternalLink className="size-3.5 text-secondary" />
-                  </Command.Item>
-
-                  <Command.Item
-                    value="LinkedIn"
-                    onSelect={() => handleSelect("https://www.linkedin.com/in/rutujdhawale/", true)}
-                    className="flex cursor-pointer items-center justify-between rounded-xl px-3 py-2.5 text-sm font-medium text-foreground transition-colors data-[selected=true]:bg-muted hover:bg-muted"
-                  >
-                    <div className="flex items-center gap-3">
-                      <LinkedinLogo className="size-4 text-secondary" />
-                      <span>LinkedIn</span>
-                    </div>
-                    <ExternalLink className="size-3.5 text-secondary" />
-                  </Command.Item>
-
-                  <Command.Item
-                    value="X Twitter"
-                    onSelect={() => handleSelect("https://x.com/mirutuj", true)}
-                    className="flex cursor-pointer items-center justify-between rounded-xl px-3 py-2.5 text-sm font-medium text-foreground transition-colors data-[selected=true]:bg-muted hover:bg-muted"
-                  >
-                    <div className="flex items-center gap-3">
-                      <XLogo className="size-4 text-secondary" />
-                      <span>X</span>
-                    </div>
-                    <ExternalLink className="size-3.5 text-secondary" />
-                  </Command.Item>
-
-                  <Command.Item
-                    value="Email"
-                    onSelect={() => handleSelect("mailto:rutujdhawale@gmail.com", true)}
-                    className="flex cursor-pointer items-center justify-between rounded-xl px-3 py-2.5 text-sm font-medium text-foreground transition-colors data-[selected=true]:bg-muted hover:bg-muted"
-                  >
-                    <div className="flex items-center gap-3">
-                      <Mail className="size-4 text-secondary" />
-                      <span>Email</span>
-                    </div>
-                    <ExternalLink className="size-3.5 text-secondary" />
-                  </Command.Item>
                 </Command.Group>
               </Command.List>
             </Command>
@@ -254,4 +130,3 @@ export function CommandMenu() {
     </>
   );
 }
-
