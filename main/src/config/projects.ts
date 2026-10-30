@@ -63,16 +63,16 @@ export const projects: Project[] = [
   {
     slug: "stickercanvas",
     title: "StickerCanvas",
-    tagline: "Ultra-tactile creative playground & 300 DPI sticker sheet studio.",
+    tagline: "Tactile sticker playground & 300 DPI export.",
     date: "06.2026",
     description:
-      "An ultra-tactile creative playground and production-grade sticker sheet studio with on-device AI background removal (RMBG-1.4 via WebGPU/WASM), a 60–120 FPS WebGL scene graph (PixiJS v8), and physical 300 DPI print-ready export.",
+      "Tactile sticker playground and studio with on-device AI background removal and 300 DPI print export.",
     tech: ["Next.js", "React 19", "PixiJS v8", "WebGPU", "Hugging Face", "Tailwind CSS"],
     tags: ["AI", "WebGPU", "PixiJS", "Next.js", "React 19", "Creative Tools", "Tailwind CSS"],
     href: "https://github.com/rutujdhawale/StickCanvas",
     website: "https://stick-canvas.vercel.app",
     featured: true,
-    cover: "/assets/projects/stickercanavs.png",
+    cover: "/assets/projects/stickercanvas.png",
     gradient: "from-orange-500/25 via-rose-500/15 to-amber-500/25",
     overview:
       "An on-device AI creative studio and sticker sheet design workspace. Combines photos, digital art, and emoji into vinyl die-cut stickers with ~200ms background removal, a 60–120 FPS WebGL scene graph, and physical 300 DPI print-ready export.",
@@ -144,7 +144,7 @@ export const projects: Project[] = [
     tags: ["Sports Analytics", "React", "Next.js", "TypeScript", "Tailwind CSS", "Data Visualization"],
     href: "https://github.com/rutujdhawale/Ninety-Plus",
     featured: true,
-    cover: "/assets/projects/ninety+.png",
+    cover: "/assets/projects/ninety-plus.png",
     gradient: "from-lime-500/25 via-green-500/15 to-emerald-500/25",
     overview:
       "A modern football analytics platform delivering real-time Premier League matchday standings, dynamic club performance insights, fixtures, and news tracking.",

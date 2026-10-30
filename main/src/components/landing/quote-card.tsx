@@ -14,17 +14,19 @@ export function QuoteCard() {
         blurIntensity="md"
         className="animate-in-up-on-view"
       >
-        <div className="p-6 text-center sm:p-8">
-          <span className="text-4xl leading-none text-muted-foreground sm:text-5xl">&ldquo;</span>
-          <p className="mx-auto mt-2 max-w-2xl text-base font-medium italic leading-relaxed text-foreground/90 sm:text-lg">
-            {quoteConfig.text}
-          </p>
-          <p className="mt-3 text-sm font-semibold tracking-wide text-secondary">
-            — {quoteConfig.author}
-          </p>
+        <div className="relative px-6 py-8 sm:px-12 sm:py-10">
+          <div className="mx-auto flex max-w-2xl flex-col items-center text-center">
+            <blockquote className="relative text-base font-medium italic leading-relaxed text-foreground/90 sm:text-lg">
+              <span className="font-serif text-2xl font-bold text-foreground/50 sm:text-3xl">&ldquo;</span>
+              {quoteConfig.text}
+              <span className="font-serif text-2xl font-bold text-foreground/50 sm:text-3xl">&rdquo;</span>
+            </blockquote>
+            <cite className="mt-4 block font-mono text-xs font-semibold tracking-wider text-secondary uppercase not-italic sm:text-sm">
+              — {quoteConfig.author}
+            </cite>
+          </div>
         </div>
       </LiquidGlassCard>
     </Container>
   );
 }
-

@@ -4,7 +4,6 @@ import { ArrowRight, GithubLogo, Globe } from "@phosphor-icons/react/dist/ssr";
 import { Container } from "@/components/container";
 import { LiquidGlassCard } from "@/components/ui/liquid-glass";
 import { projects, type Project } from "@/config/projects";
-import { getTechIcon } from "@/lib/tech-icons";
 import { cn } from "@/lib/utils";
 
 export function ProjectCard({ project, index = 0 }: { project: Project; index?: number }) {
@@ -75,13 +74,13 @@ export function ProjectCard({ project, index = 0 }: { project: Project; index?: 
           </div>
         </div>
 
-        <p className="mt-4 flex-1 text-base leading-relaxed text-secondary">
+        <p className="mt-3 flex-1 text-sm leading-relaxed text-secondary sm:text-base">
           {project.description}
         </p>
 
         {project.tags && project.tags.length > 0 && (
           <div className="mt-3 flex flex-wrap gap-1.5">
-            {project.tags.map((tag) => (
+            {project.tags.slice(0, 4).map((tag) => (
               <span
                 key={tag}
                 className="rounded-md border border-border/70 bg-muted/40 px-2 py-0.5 font-mono text-[11px] text-secondary"
@@ -92,48 +91,27 @@ export function ProjectCard({ project, index = 0 }: { project: Project; index?: 
           </div>
         )}
 
-        <div className="mt-5">
-          <p className="text-sm font-medium text-secondary">Technologies</p>
-          <div className="mt-3 flex items-end justify-between gap-3">
-            <div className="flex min-w-0 flex-wrap gap-2">
-            {project.tech.map((tech) => {
-              const icon = getTechIcon(tech);
-              return icon ? (
-                <div
-                  key={tech}
-                  title={tech}
-                  className="flex size-7 items-center justify-center rounded-md bg-background/70 shadow-sm ring-1 ring-border/60 dark:bg-white/95"
-                >
-                  <Image
-                    src={icon.startsWith("/") ? icon : `https://cdn.simpleicons.org/${icon}`}
-                    alt={tech}
-                    width={16}
-                    height={16}
-                    className="size-4"
-                    unoptimized
-                  />
-                </div>
-              ) : (
+        <div className="mt-4 border-t border-dashed border-border/40 pt-3">
+          <div className="flex items-center justify-between gap-3">
+            <div className="flex min-w-0 flex-wrap gap-1.5">
+              {project.tech.slice(0, 4).map((tech) => (
                 <span
                   key={tech}
-                  className="rounded-md border border-dashed border-border bg-background/50 px-2 py-1 font-mono text-[10px] text-secondary"
+                  className="rounded-md border border-border/80 bg-background/60 px-2 py-0.5 font-mono text-[10px] font-medium text-foreground/80"
                 >
                   {tech}
                 </span>
-              );
-            })}
+              ))}
             </div>
             <Link
               href={detailHref}
-              className="inline-flex shrink-0 items-center gap-2 rounded-lg border border-border px-2.5 py-1.5 text-xs font-medium text-secondary transition-colors hover:bg-muted hover:text-foreground"
+              className="inline-flex shrink-0 items-center gap-1 rounded-lg border border-border px-2.5 py-1 text-xs font-medium text-secondary transition-colors hover:bg-muted hover:text-foreground"
             >
-              View Details
-              <ArrowRight className="size-3.5" />
+              Details
+              <ArrowRight className="size-3" />
             </Link>
           </div>
         </div>
-
-
       </div>
     </LiquidGlassCard>
   );

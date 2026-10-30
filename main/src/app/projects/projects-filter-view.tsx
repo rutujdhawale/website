@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import { Container } from "@/components/container";
 import { ProjectCard } from "@/components/projects-grid";
 import { type Project } from "@/config/projects";
-import { MagnifyingGlass, Tag } from "@phosphor-icons/react";
+import { MagnifyingGlass, Tag } from "@phosphor-icons/react/dist/ssr";
 
 export function ProjectsFilterView({ initialProjects }: { initialProjects: Project[] }) {
   const [selectedTag, setSelectedTag] = useState<string>("All");
@@ -98,4 +98,3 @@ export function ProjectsFilterView({ initialProjects }: { initialProjects: Proje
     </div>
   );
 }
-
