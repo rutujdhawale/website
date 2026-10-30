@@ -50,9 +50,9 @@ function ExperienceRow({ item }: { item: FeaturedItem }) {
             <span className="text-foreground/90">{item.subtitle}</span>
           </div>
 
-          {item.details.length > 0 && (
+          {item.details.some((d) => d.trim().length > 0) && (
             <p className="mt-2 text-sm leading-relaxed text-secondary sm:text-[15px]">
-              {item.details.join(" ")}
+              {item.details.filter((d) => d.trim().length > 0).join(" ")}
             </p>
           )}
         </div>

@@ -2,52 +2,40 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Pause, Play } from "@phosphor-icons/react";
+import { ArrowClockwise, Pause, Play } from "@phosphor-icons/react";
 import { useEffect, useRef, useState } from "react";
 import { LiquidGlassCard } from "@/components/ui/liquid-glass";
-import { lastPlayedTrack } from "@/config/spotify";
+import { playlistTracks, type SpotifyTrack } from "@/config/spotify";
 import { cn } from "@/lib/utils";
-
-type SpotifyTrackState = {
-  title: string;
-  artist: string;
-  album: string;
-  albumArt: string;
-  songUrl: string;
-  previewUrl: string | null;
-  isPlaying: boolean;
-  isLive: boolean;
-  setupRequired?: boolean;
-};
 
 const waveformHeights = [28, 44, 56, 40, 24, 36, 22, 30, 58, 20, 26, 42, 48, 24, 34, 52, 38, 26, 30, 46, 54, 28, 40, 32, 22, 48, 18, 50, 56, 30, 22];
 
-const staticTrack = {
-  title: lastPlayedTrack.title,
-  artist: lastPlayedTrack.artist,
-  album: lastPlayedTrack.album,
-  albumArt: lastPlayedTrack.albumArt,
-  songUrl: lastPlayedTrack.songUrl,
-  previewUrl: lastPlayedTrack.audioSrc || null,
-};
-
-const fallbackStatus: SpotifyTrackState = {
-  ...staticTrack,
-  isPlaying: false,
-  isLive: false,
-};
-
 export function SpotifyLastPlayed() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const [spotifyStatus] = useState<SpotifyTrackState>(fallbackStatus);
+  const [trackIndex, setTrackIndex] = useState(0);
   const [isPlayingOnSite, setIsPlayingOnSite] = useState(false);
   const [elapsed, setElapsed] = useState(0);
 
-  const playableSource = staticTrack.previewUrl ?? spotifyStatus.previewUrl;
-  const statusLabel = spotifyStatus.isLive ? "Listening now" : "Last listened";
-  const statusTrack = spotifyStatus.title
-    ? `${spotifyStatus.title} · ${spotifyStatus.artist}`
-    : `${staticTrack.title} · ${staticTrack.artist}`;
+  // Initialize track on client mount (randomizes or alternates between sessions)
+  useEffect(() => {
+    try {
+      const prev = sessionStorage.getItem("portfolio-track-index");
+      const next = prev ? (Number(prev) + 1) % playlistTracks.length : Math.floor(Math.random() * playlistTracks.length);
+      sessionStorage.setItem("portfolio-track-index", String(next));
+      setTrackIndex(next);
+    } catch {
+      // fallback
+    }
+  }, []);
+
+  const activeTrack: SpotifyTrack = playlistTracks[trackIndex] || playlistTracks[0];
+  const playableSource = activeTrack.audioSrc || null;
+
+  const handleNextTrack = () => {
+    setIsPlayingOnSite(false);
+    setElapsed(0);
+    setTrackIndex((prev) => (prev + 1) % playlistTracks.length);
+  };
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -59,7 +47,6 @@ export function SpotifyLastPlayed() {
       audio.pause();
     }
   }, [isPlayingOnSite, playableSource]);
-
 
   return (
     <LiquidGlassCard
@@ -88,11 +75,11 @@ export function SpotifyLastPlayed() {
             onClick={() => setIsPlayingOnSite((current) => !current)}
             disabled={!playableSource}
             className="group relative z-20 size-20 overflow-hidden rounded-full bg-black shadow-[0_10px_24px_rgba(0,0,0,0.18)] ring-1 ring-black/15 transition-transform hover:scale-[1.02] disabled:cursor-not-allowed"
-            aria-label={isPlayingOnSite ? `Pause ${staticTrack.title}` : `Play ${staticTrack.title}`}
+            aria-label={isPlayingOnSite ? `Pause ${activeTrack.title}` : `Play ${activeTrack.title}`}
           >
             <Image
-              src="/assets/hysteria-vinyl.png"
-              alt={`${staticTrack.title} vinyl record`}
+              src={activeTrack.albumArt}
+              alt={`${activeTrack.title} vinyl record`}
               fill
               sizes="80px"
               className={cn(
@@ -116,33 +103,39 @@ export function SpotifyLastPlayed() {
         </div>
 
         <div className="min-w-0 flex-1">
-          <p className="flex items-center gap-1.5 text-[10px] font-medium text-secondary">
-            <span
-              className={cn(
-                "size-1.5 rounded-full",
-                spotifyStatus.isLive ? "bg-emerald-500" : "bg-secondary/60",
-              )}
-            />
-            {spotifyStatus.isLive ? "Live" : "Favorite"}
-          </p>
+          <div className="flex items-center justify-between gap-1">
+            <p className="flex items-center gap-1.5 text-[10px] font-medium text-secondary">
+              <span className="size-1.5 rounded-full bg-emerald-500" />
+              Last listened
+            </p>
+            <button
+              type="button"
+              onClick={handleNextTrack}
+              title="Next favorite song"
+              className="inline-flex items-center gap-1 text-[10px] font-medium text-secondary transition-colors hover:text-foreground"
+            >
+              <ArrowClockwise className="size-3" />
+              <span>Change</span>
+            </button>
+          </div>
 
           <Link
-            href={staticTrack.songUrl}
+            href={activeTrack.songUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="mt-0.5 block truncate text-sm font-semibold text-foreground hover:underline"
           >
-            {staticTrack.title}
+            {activeTrack.title}
           </Link>
-          <p className="truncate text-xs text-secondary">{staticTrack.artist}</p>
+          <p className="truncate text-xs text-secondary">{activeTrack.artist}</p>
 
           <Link
-            href={spotifyStatus.songUrl || staticTrack.songUrl}
+            href={activeTrack.songUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-2 block truncate text-[10px] text-secondary underline-offset-2 hover:text-foreground hover:underline"
+            className="mt-1.5 block truncate text-[10px] text-secondary underline-offset-2 hover:text-foreground hover:underline"
           >
-            {statusLabel}: {statusTrack}
+            {activeTrack.album} · Spotify
           </Link>
         </div>
 
@@ -152,7 +145,7 @@ export function SpotifyLastPlayed() {
             onClick={() => setIsPlayingOnSite((current) => !current)}
             disabled={!playableSource}
             className="music-player-toggle"
-            aria-label={isPlayingOnSite ? `Pause ${staticTrack.title}` : `Play ${staticTrack.title}`}
+            aria-label={isPlayingOnSite ? `Pause ${activeTrack.title}` : `Play ${activeTrack.title}`}
             aria-pressed={isPlayingOnSite}
           >
             {isPlayingOnSite ? (
@@ -178,12 +171,6 @@ export function SpotifyLastPlayed() {
           </span>
         </div>
       </div>
-
-      {!playableSource && (
-        <p className="mt-2 text-[10px] leading-relaxed text-secondary">
-          Add an audio file to enable website playback.
-        </p>
-      )}
     </LiquidGlassCard>
   );
 }

@@ -2,7 +2,7 @@ export const heroConfig = {
   name: "Rutuj Dhawale",
   email: "rutujdhawale@gmail.com",
   calendarUrl: "",
-  bio: "AI engineer and full-stack developer building RAG systems, LLM apps, and real-world products.",
+  bio: "",
   avatar: "/assets/avatar.png",
   avatarSmile: "/assets/avatar-smile.png",
   timezone: "Asia/Kolkata",

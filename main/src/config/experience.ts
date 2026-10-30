@@ -18,7 +18,7 @@ export const experience: ExperienceItem[] = [
     periodLong: "2025 - Present",
     link: "https://github.com/kagent-dev/kagent",
     details: [
-      "Resolved UI occlusion in AgentCard by implementing a flexible ribbon badge layout. Refactored tool resolution from partial string matching to canonical full-reference equality across ToolsSection and SelectToolsDialog, eliminating duplicate tool registrations and ensuring deterministic description rendering.",
+      "Fixed AgentCard UI occlusion with an adaptive ribbon badge (#952). Refactored tool resolution to full-reference equality across ToolsSection and SelectToolsDialog, preventing duplicate registrations.",
     ],
   },
   {
@@ -29,17 +29,17 @@ export const experience: ExperienceItem[] = [
     locationShort: "Mumbai, IN",
     locationLong: "Mumbai, India",
     details: [
-      "",
+      "Electronics & Telecommunication Engineering.",
     ],
   },
   {
     company: "krkn",
     role: "Contributor (CNCF)",
-    periodShort: "2026 - Present",
-    periodLong: "2026 - Present",
+    periodShort: "2024 - Present",
+    periodLong: "2024 - Present",
     link: "https://github.com/krkn-chaos/krkn",
     details: [
-      "Hardened serverless chat function error handling by isolating JSON payload validation, returning a clean 400 Bad Request on malformed inputs rather than uncaught 500 server crashes. Integrated test suite execution into contributor workflows, and eliminated redundant banner state across etcd split-brain and IO Hog chaos scenarios (#554).",
+      "Hardened serverless chat function error handling to return 400 Bad Request on invalid JSON payloads instead of 500 server crashes. Added test execution steps to contributing guides and cleaned redundant banners across chaos docs (#554).",
     ],
   },
   {
@@ -50,7 +50,7 @@ export const experience: ExperienceItem[] = [
     locationShort: "Remote, IN",
     locationLong: "Remote, India",
     details: [
-      "Engineered REST APIs with JWT authentication, role-based access control (RBAC), and MongoDB pipelines for user and campaign workflows. Built responsive frontend modules for the Sahayog crowdfunding platform using React and Tailwind CSS.",
+      "Engineered secure REST APIs with JWT auth, RBAC, and MongoDB for user workflows. Developed responsive frontend components for the Sahayog crowdfunding platform using React and Tailwind CSS.",
     ],
   },
 ];

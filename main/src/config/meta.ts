@@ -1,12 +1,12 @@
 export const siteConfig = {
-  name: "Rutuj Dhawale",
-  title: "Rutuj Dhawale | Software Engineer & AI Developer",
+  name: "@rutujdhawale",
+  title: "@rutujdhawale",
   description:
-    "Portfolio of Rutuj Dhawale. Building AI tools, full-stack applications, open-source projects, and developer products.",
+    "personal site",
   url: "https://rutuj.tech",
   githubUsername: "rutujdhawale",
   twitterHandle: "@mirutuj",
-  ogImage: "/assets/og-image.jpg",
+  ogImage: "/assets/avatar-smile-transparent.png",
   ogImageWidth: 1024,
   ogImageHeight: 668,
   copyright: "All rights reserved.",
