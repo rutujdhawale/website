@@ -43,8 +43,8 @@ export const experience: ExperienceItem[] = [
   {
     company: "Unified Mentor Private Limited",
     role: "Software Engineer Intern",
-    periodShort: "2025 - Aug 2025",
-    periodLong: "2025 - Aug 2025",
+    periodShort: "Jun - Aug 2025",
+    periodLong: "Jun - Aug 2025",
     locationShort: "Remote, IN",
     locationLong: "Remote, India",
     link: "https://unifiedmentor.com/",
