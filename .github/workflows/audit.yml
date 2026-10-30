@@ -1,0 +1,19 @@
+name: Security & Dependency Audit
+
+on:
+  schedule:
+    - cron: '0 0 * * 1'
+  workflow_dispatch:
+
+jobs:
+  audit:
+    name: Audit Dependencies
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run npm audit
+        working-directory: main
+        run: npm audit --audit-level=high
+        continue-on-error: true

@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    name: Build, Typecheck & Lint (Windows)
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: main/package.json
+
+      - name: Install dependencies
+        working-directory: main
+        run: npm ci
+
+      - name: Run ESLint
+        working-directory: main
+        run: npm run lint
+
+      - name: Run TypeScript typecheck
+        working-directory: main
+        run: npx tsc --noEmit
+
+      - name: Build Next.js production bundle
+        working-directory: main
+        run: npm run build
+        env:
+          NEXT_TELEMETRY_DISABLED: 1

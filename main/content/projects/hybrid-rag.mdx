@@ -1,0 +1,31 @@
+---
+title: "Hybrid RAG"
+description: "A terminal-based hybrid retrieval-augmented generation system combining dense and sparse vector search with real-time query telemetry."
+date: "2026-05-15"
+tags: ["AI", "RAG", "LLM", "Python", "Vector Search", "CLI", "NLP"]
+tech: ["Python", "RAG", "Vector Search", "CLI", "ChromaDB"]
+cover: "/assets/projects/hrag.png"
+---
+
+# Hybrid RAG
+
+A high-performance terminal-based hybrid retrieval-augmented generation (RAG) system that combines dense vector embeddings with sparse keyword matching (BM25) to deliver contextually rich and accurate query retrieval.
+
+## Overview
+
+Traditional vector search often struggles with precise keywords, serial numbers, and domain-specific terminology, while pure keyword search misses semantic context and synonyms. 
+
+**Hybrid RAG unites both paradigms:**
+- **Dense Retrieval**: Encodes semantic nuance using dense embedding vectors.
+- **Sparse Retrieval**: Captures exact-match precision via BM25 scoring.
+- **Reciprocal Rank Fusion (RRF)**: Merges ranked results dynamically to produce optimal document chunks.
+
+---
+
+## Core Capabilities
+
+- **Terminal Telemetry Dashboard**: Real-time display of retrieval latency, embedding inference speed, and token consumption directly in your terminal.
+- **Local & Private Execution**: Runs local vector stores with zero data leaving your environment.
+- **Adaptive Reranking**: Re-evaluates top-k candidate chunks before delivering final prompts to the generator model.
+- **Fast Ingestion Pipeline**: Ingests Markdown, PDF, and text documents with automatic chunking and overlap management.
+
