@@ -26,7 +26,7 @@ export const footerNav: readonly NavItem[] = [
 
 export const commandItems = [
   ...footerNav.map((item) => ({ label: item.label, href: item.href, external: item.external })),
-  { label: "X", href: "https://x.com/rutujdhawale", external: true },
+  { label: "X", href: "https://x.com/mirutuj", external: true },
   { label: "GitHub", href: "https://github.com/rutujdhawale", external: true },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/rutujdhawale/", external: true },
   { label: "Email", href: "mailto:rutujdhawale@gmail.com", external: true },

@@ -13,9 +13,7 @@ export function ProjectsFilterView({ initialProjects }: { initialProjects: Proje
     initialProjects.forEach((p) => {
       p.tags?.forEach((t) => tagSet.add(t));
     });
-    // Keep at most 9 distinct tags + "All" (total 10 items max)
-    const unique = Array.from(tagSet).slice(0, 9);
-    return ["All", ...unique];
+    return ["All", ...Array.from(tagSet)];
   }, [initialProjects]);
 
   const filteredProjects = useMemo(() => {
@@ -28,7 +26,7 @@ export function ProjectsFilterView({ initialProjects }: { initialProjects: Proje
   return (
     <div className="space-y-8">
       <Container>
-        <div className="flex items-center gap-2 overflow-x-auto pb-2 pt-1 no-scrollbar sm:pb-0">
+        <div className="flex flex-wrap items-center gap-2 pt-1">
           {allTags.map((tag) => {
             const isActive = selectedTag === tag;
             return (
@@ -36,7 +34,7 @@ export function ProjectsFilterView({ initialProjects }: { initialProjects: Proje
                 key={tag}
                 type="button"
                 onClick={() => setSelectedTag(tag)}
-                className={`shrink-0 rounded-lg px-3 py-1.5 font-mono text-xs transition-colors ${
+                className={`rounded-lg px-3 py-1.5 font-mono text-xs transition-colors ${
                   isActive
                     ? "bg-foreground font-semibold text-background shadow-xs"
                     : "border border-border/80 bg-card/60 text-secondary hover:border-foreground/30 hover:bg-muted hover:text-foreground"

@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "node -e \"process.chdir('main'); require('child_process').spawnSync('npm', ['run', 'dev'], { stdio: 'inherit', shell: true })\"",
-    "build": "node -e \"process.chdir('main'); require('child_process').spawnSync('npm', ['run', 'build'], { stdio: 'inherit', shell: true })\"",
-    "start": "node -e \"process.chdir('main'); require('child_process').spawnSync('npm', ['run', 'start'], { stdio: 'inherit', shell: true })\"",
-    "lint": "node -e \"process.chdir('main'); require('child_process').spawnSync('npm', ['run', 'lint'], { stdio: 'inherit', shell: true })\""
+    "dev": "npm --prefix main run dev",
+    "build": "npm --prefix main run build",
+    "start": "npm --prefix main run start",
+    "lint": "npm --prefix main run lint"
   }
 }
 

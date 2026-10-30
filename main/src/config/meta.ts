@@ -5,7 +5,7 @@ export const siteConfig = {
     "Portfolio of Rutuj Dhawale. Building AI tools, full-stack applications, open-source projects, and developer products.",
   url: "https://rutuj.tech",
   githubUsername: "rutujdhawale",
-  twitterHandle: "@rutujdhawale",
+  twitterHandle: "@mirutuj",
   ogImage: "/assets/og-image.jpg",
   ogImageWidth: 1024,
   ogImageHeight: 668,

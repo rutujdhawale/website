@@ -1,14 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, GithubLogo, Globe } from "@phosphor-icons/react/dist/ssr";
+import { GithubLogo, Globe } from "@phosphor-icons/react/dist/ssr";
 import { Container } from "@/components/container";
 import { LiquidGlassCard } from "@/components/ui/liquid-glass";
 import { projects, type Project } from "@/config/projects";
 import { cn } from "@/lib/utils";
 
 export function ProjectCard({ project, index = 0 }: { project: Project; index?: number }) {
-  const detailHref = `/projects/${project.slug}`;
-
   return (
     <LiquidGlassCard
       glowIntensity="sm"
@@ -44,12 +42,9 @@ export function ProjectCard({ project, index = 0 }: { project: Project; index?: 
 
       <div className="flex flex-1 flex-col p-5">
         <div className="flex items-start justify-between gap-3">
-          <Link
-            href={detailHref}
-            className="min-w-0 text-xl font-bold tracking-tight transition-colors hover:text-secondary"
-          >
+          <h3 className="min-w-0 text-xl font-bold tracking-tight text-foreground">
             {project.title}
-          </Link>
+          </h3>
           <div className="flex shrink-0 items-center gap-1.5">
             {project.website && (
               <Link
@@ -79,24 +74,15 @@ export function ProjectCard({ project, index = 0 }: { project: Project; index?: 
         </p>
 
         <div className="mt-5 border-t border-dashed border-border/40 pt-3.5">
-          <div className="flex items-center justify-between gap-3">
-            <div className="flex min-w-0 flex-wrap gap-1.5">
-              {project.tech.slice(0, 4).map((tech) => (
-                <span
-                  key={tech}
-                  className="rounded-md border border-border/80 bg-background/60 px-2 py-0.5 font-mono text-[10px] font-medium text-foreground/80"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-            <Link
-              href={detailHref}
-              className="inline-flex shrink-0 items-center gap-1 rounded-lg border border-border px-2.5 py-1 text-xs font-medium text-secondary transition-colors hover:bg-muted hover:text-foreground"
-            >
-              Details
-              <ArrowRight className="size-3" />
-            </Link>
+          <div className="flex min-w-0 flex-wrap gap-1.5">
+            {project.tech.map((tech) => (
+              <span
+                key={tech}
+                className="rounded-md border border-border/80 bg-background/60 px-2 py-0.5 font-mono text-[10px] font-medium text-foreground/80"
+              >
+                {tech}
+              </span>
+            ))}
           </div>
         </div>
       </div>
