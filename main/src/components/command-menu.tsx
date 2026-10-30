@@ -5,7 +5,6 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Command } from "cmdk";
 import {
-  Briefcase,
   ExternalLink,
   FileText,
   Folder,
