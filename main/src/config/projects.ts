@@ -29,7 +29,7 @@ export const projects: Project[] = [
     description:
       "A terminal-based hybrid retrieval-augmented generation system combining dense and sparse vector search with real-time query telemetry.",
     tech: ["Python", "RAG", "Vector Search", "CLI"],
-    tags: ["AI", "RAG", "LLM", "Python", "Vector Search", "CLI", "NLP"],
+    tags: ["AI", "RAG", "Python", "Vector Search"],
     href: "https://github.com/rutujdhawale/Hybrid-RAG",
     featured: true,
     cover: "/assets/projects/hrag.png",
@@ -68,7 +68,7 @@ export const projects: Project[] = [
     description:
       "Tactile sticker playground and studio with on-device AI background removal and 300 DPI print export.",
     tech: ["Next.js", "React 19", "PixiJS v8", "WebGPU", "Hugging Face", "Tailwind CSS"],
-    tags: ["AI", "WebGPU", "PixiJS", "Next.js", "React 19", "Creative Tools", "Tailwind CSS"],
+    tags: ["AI", "WebGPU", "PixiJS", "Next.js"],
     href: "https://github.com/rutujdhawale/StickCanvas",
     website: "https://stick-canvas.vercel.app",
     featured: true,
@@ -109,7 +109,7 @@ export const projects: Project[] = [
     description:
       "Convert ASCII directory tree structures directly into downloadable ZIP archives with client-side parsing.",
     tech: ["TypeScript", "Next.js", "JSZip", "Tailwind CSS"],
-    tags: ["Developer Tools", "TypeScript", "Next.js", "JSZip", "Utility", "Tailwind CSS"],
+    tags: ["Tools", "TypeScript", "Next.js"],
     href: "https://github.com/rutujdhawale/FolderZip",
     featured: true,
     cover: "/assets/projects/folderzip.png",
@@ -141,7 +141,7 @@ export const projects: Project[] = [
     description:
       "A football analytics platform providing live Premier League matchday standings, fixtures, clubs, and news.",
     tech: ["TypeScript", "React", "Next.js", "Tailwind CSS"],
-    tags: ["Sports Analytics", "React", "Next.js", "TypeScript", "Tailwind CSS", "Data Visualization"],
+    tags: ["Sports", "React", "Next.js", "TypeScript"],
     href: "https://github.com/rutujdhawale/Ninety-Plus",
     featured: true,
     cover: "/assets/projects/ninety-plus.png",

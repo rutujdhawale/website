@@ -7,8 +7,7 @@ export const rotatingTitles = [
   "AI Engineer",
   "Full Stack Developer",
   "Software Engineer",
-  "Traveller",
+  "Product Thinker",
   "Curious Builder",
-  "Creator",
   "Always ready to learn new things"
 ];

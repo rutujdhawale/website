@@ -13,10 +13,9 @@ export default function ProjectsPage() {
   return (
     <div className="space-y-8 pb-16 pt-8">
       <Container>
-        <p className="text-sm font-mono text-secondary">Showcase</p>
-        <h1 className="mt-1 text-3xl font-bold tracking-tight sm:text-4xl">Projects</h1>
+        <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">Projects</h1>
         <p className="mt-2 text-secondary sm:text-base">
-          AI systems, RAG pipelines, creative tools, and full-stack products. Search and filter by tags below.
+          Selected work, collaborations, and personal projects.
         </p>
       </Container>
       <ProjectsFilterView initialProjects={projects} />

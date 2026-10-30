@@ -78,20 +78,7 @@ export function ProjectCard({ project, index = 0 }: { project: Project; index?: 
           {project.description}
         </p>
 
-        {project.tags && project.tags.length > 0 && (
-          <div className="mt-3 flex flex-wrap gap-1.5">
-            {project.tags.slice(0, 4).map((tag) => (
-              <span
-                key={tag}
-                className="rounded-md border border-border/70 bg-muted/40 px-2 py-0.5 font-mono text-[11px] text-secondary"
-              >
-                #{tag}
-              </span>
-            ))}
-          </div>
-        )}
-
-        <div className="mt-4 border-t border-dashed border-border/40 pt-3">
+        <div className="mt-5 border-t border-dashed border-border/40 pt-3.5">
           <div className="flex items-center justify-between gap-3">
             <div className="flex min-w-0 flex-wrap gap-1.5">
               {project.tech.slice(0, 4).map((tech) => (
