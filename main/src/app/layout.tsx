@@ -14,20 +14,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   icons: {
-    icon: [
-      {
-        url: "/favicon.svg",
-        type: "image/svg+xml",
-      },
-      {
-        url: "/assets/avatar-smile-transparent.png",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        url: "/favicon.svg",
-        media: "(prefers-color-scheme: dark)",
-      },
-    ],
+    icon: "/assets/avatar-smile-transparent.png",
     shortcut: "/assets/avatar-smile-transparent.png",
     apple: "/assets/avatar-smile-transparent.png",
   },
