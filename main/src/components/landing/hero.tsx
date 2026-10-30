@@ -45,7 +45,7 @@ export function Hero() {
   };
 
   return (
-    <Container className="pt-4 sm:pt-0">
+    <Container id="about" className="pt-4 sm:pt-0">
       <div className="animate-in-up-on-view flex flex-col gap-4 sm:gap-5">
         <div className="corner-frame relative h-[calc(var(--grid-cell-size)*4)] overflow-visible">
           <div className="relative size-full overflow-hidden border border-foreground/15">

@@ -65,7 +65,7 @@ export function FeaturedExperienceSection() {
   const featuredItems = experience.map(experienceToFeatured);
 
   return (
-    <Container>
+    <Container id="experience">
       <div className="mb-6">
         <h2 className="text-3xl font-bold tracking-tight text-foreground">
           Experience

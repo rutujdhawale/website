@@ -106,7 +106,7 @@ export function ProjectsGrid({
   const displayed = limit ? list.slice(0, limit) : list;
 
   return (
-    <Container>
+    <Container id="projects">
       {showHeading && (
         <div className="mb-8 flex items-end justify-between gap-4">
           <div>

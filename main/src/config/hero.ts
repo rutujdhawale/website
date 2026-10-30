@@ -4,7 +4,7 @@ export const heroConfig = {
   calendarUrl: "",
   bio: "",
   avatar: "/assets/avatar.png",
-  avatarSmile: "/assets/avatar-smile.png",
+  avatarSmile: "/assets/avatar-smile-transparent.png",
   timezone: "Asia/Kolkata",
   location: "India",
 };

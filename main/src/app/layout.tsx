@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { SiteAnalytics } from "@/components/analytics";
+import { CommandMenu } from "@/components/command-menu";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { CursorPet } from "@/components/cursor-pet";
@@ -13,8 +14,22 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   icons: {
-    icon: "/assets/avatar-smile.png",
-    apple: "/assets/avatar-smile.png",
+    icon: [
+      {
+        url: "/favicon.svg",
+        type: "image/svg+xml",
+      },
+      {
+        url: "/assets/avatar-smile-transparent.png",
+        media: "(prefers-color-scheme: light)",
+      },
+      {
+        url: "/favicon.svg",
+        media: "(prefers-color-scheme: dark)",
+      },
+    ],
+    shortcut: "/assets/avatar-smile-transparent.png",
+    apple: "/assets/avatar-smile-transparent.png",
   },
 };
 
@@ -39,6 +54,7 @@ export default function RootLayout({
               <SiteFooter />
               <div className="pointer-events-none fixed inset-x-0 bottom-0 z-10 h-[60px] bg-gradient-to-t from-background/80 to-transparent [mask-image:linear-gradient(to_top,black_50%,transparent)]" />
               <CursorPet />
+              <CommandMenu />
             </div>
             <SiteAnalytics />
           </TooltipProvider>
