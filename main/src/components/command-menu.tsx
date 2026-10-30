@@ -49,9 +49,9 @@ export function CommandMenu() {
 
   return (
     <>
-      {/* Floating Bottom Navigation & Search Dock */}
-      <div className="pointer-events-none fixed bottom-5 inset-x-0 z-40 flex justify-center px-4">
-        <div className="pointer-events-auto flex items-center gap-1.5 rounded-full border border-border/80 bg-background/85 p-1.5 shadow-xl backdrop-blur-xl ring-1 ring-black/5 dark:ring-white/10">
+      {/* Floating Bottom Navigation & Search Dock (Mobile only) */}
+      <div className="pointer-events-none fixed bottom-5 inset-x-0 z-40 flex justify-center px-4 md:hidden">
+        <div className="pointer-events-auto flex items-center gap-1.5 rounded-full border border-border/80 bg-background/90 p-1.5 shadow-xl backdrop-blur-xl ring-1 ring-black/5 dark:ring-white/10">
           <Link
             href="/"
             aria-label="Home"
@@ -67,10 +67,7 @@ export function CommandMenu() {
             aria-label="Search pages and links"
           >
             <Search className="size-4" />
-            <span className="text-xs sm:text-sm">Search</span>
-            <kbd className="hidden rounded border border-border/60 bg-muted/70 px-1.5 py-0.5 font-mono text-[10px] text-secondary sm:inline-block">
-              ⌘K
-            </kbd>
+            <span className="text-xs">Search</span>
           </button>
         </div>
       </div>
