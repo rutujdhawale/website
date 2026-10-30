@@ -22,7 +22,7 @@ export function QuoteCard() {
               <span className="font-serif text-2xl font-bold text-foreground/50 sm:text-3xl">&rdquo;</span>
             </blockquote>
             <cite className="mt-4 block font-mono text-xs font-semibold tracking-wider text-secondary uppercase not-italic sm:text-sm">
-              — {quoteConfig.author}
+              - {quoteConfig.author}
             </cite>
           </div>
         </div>

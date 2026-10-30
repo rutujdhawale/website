@@ -8,8 +8,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-and-test:
-    name: Build, Typecheck & Lint (Windows)
+  verify:
+    name: Lint, Typecheck & Build
     runs-on: windows-latest
 
     steps:

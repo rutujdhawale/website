@@ -46,7 +46,7 @@ function ExperienceRow({ item }: { item: FeaturedItem }) {
                 {item.title}
               </span>
             )}
-            <span className="text-secondary">—</span>
+            <span className="text-secondary">-</span>
             <span className="text-foreground/90">{item.subtitle}</span>
           </div>
 
